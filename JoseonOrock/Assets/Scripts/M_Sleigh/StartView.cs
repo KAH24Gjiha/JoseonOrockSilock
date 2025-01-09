@@ -6,8 +6,11 @@ using TMPro;
 
 public class StartView : MonoBehaviour
 {
+    public string minigameText;
     [SerializeField] private TMP_Text centerText;
     [SerializeField] private GameObject Image;
+
+    public bool isStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +19,7 @@ public class StartView : MonoBehaviour
 
     IEnumerator StartScene()
     {
-        centerText.text = "Sleigh Race";
+        centerText.text = minigameText;
         yield return new WaitForSeconds(3f);
         Image.SetActive(false);
 
@@ -28,9 +31,10 @@ public class StartView : MonoBehaviour
         yield return new WaitForSeconds(1f);
         centerText.text = "GO!";
 
-        GetComponent<SleighMove>().StartRace();
+        //GetComponent<SleighMove>().StartRace();
+        isStart = true;
 
-        while(centerText.alpha > 0)
+        while (centerText.alpha > 0)
         {
             yield return new WaitForSeconds(0.1f);
             centerText.alpha -= 0.1f;
